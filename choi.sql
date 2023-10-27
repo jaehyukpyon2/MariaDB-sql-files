@@ -14,13 +14,6 @@ SELECT *
 FROM   employees
 WHERE  employee_id <> 105; # 105번이 아닌 것
 
-SELECT last_name, 
-       LOWER(last_name) LOWER적용, 
-       UPPER(last_name) UPPER적용, 
-       email, 
-       INITCAP(email) INITCAP적용
-FROM   employees; 
-
 select substring('12345', 2); # 2345
 
 SELECT
@@ -39,7 +32,6 @@ FROM   employees;
 
 SELECT first_name, LPAD(first_name, 12, '*') LPAD적용결과
 FROM   employees;
-
 select lpad('123456789112345', 12, '*'); # 문자열의 길이가 12가 넘으면 *으로 채우지 않는다. 즉 12보다 적을때만 동작
 
 SELECT job_id, 
@@ -48,3 +40,16 @@ SELECT job_id,
 FROM   employees; 
 select trim(leading 'A' from 'AABCD'); # 좌측의 모든 A 제거
 # trim(문자열) >> 좌우 공백 제거
+
+SELECT concat('start', TRIM('   - space -  '), 'end') as 제거된_공백
+FROM dual;
+
+SELECT salary, 
+       salary / 30 일급, 
+       ROUND(salary / 30, 0) 적용결과0, # 소수점 첫째자리에서 반올림해서 정수만 표현
+       ROUND(salary / 30, 1) 적용결과1, # 소수점 둘째자리에서 반올림해서 소수점 첫째자리까지만 표현
+       ROUND(salary / 30, -1) 적용결과MINUS1 # 일의자리에서 반올림하고, 일의자리는 0으로
+FROM   employees;
+
+# ROUND(숫자,반올림할 자릿수) - 숫자를 반올림할 자릿수 +1 자릿수에서 반올림
+SELECT ROUND(3456.1234567, 1) FROM DUAL; # 3456.1
