@@ -1,0 +1,1 @@
+call user_create('eggjam82', 'jaehyuk', '12345', 26);
